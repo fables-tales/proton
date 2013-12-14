@@ -37,7 +37,7 @@ interface with other services.
    succeeds.
 
     1.1 The YAML output MUST contain exactly top level keys as the provided
-        input file with one of:
+        input file with all of:
 
         * A key "score" with a numeric value, representing the team's score.
         * A key "present" with the value from the present key in the input.
