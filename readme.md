@@ -114,9 +114,20 @@ QEH:
 CLF:
     score: 41.0
     present: true
-PSC: 12.0
-BGR: 7.0
-QEH: 18.0
+    disqualified: false
+PSC:
+    score: 12.0
+    present: true
+    disqualified: false
+BGR:
+    score: 7.0
+    present: true
+    disqualified: false
+QEH:
+    score: 18.0
+    present: true
+    disqualified: false
+
 #with exit code 0
 ```
 
@@ -131,9 +142,18 @@ QEH: 18.0
 ###Invalid responses
 
 ```
-CLF: 41.0
-PSC: 12.0
-QEH: 18.0
+CLF:
+    score: 41.0
+    present: true
+    disqualified: false
+PSC:
+    score: 12.0
+    present: true
+    disqualified: false
+QEH:
+    score: 18.0
+    present: true
+    disqualified: false
 #with exit code 0
 ```
 
@@ -142,9 +162,21 @@ QEH: 18.0
 ```
 
 ```
-CLF: 41.0
-PSC: 12.0
-BGR: 7.0
-QEH: 18.0
+CLF:
+    score: 41.0
+    present: true
+    disqualified: false
+PSC:
+    score: 12.0
+    present: true
+    disqualified: false
+BGR:
+    score: 7.0
+    present: true
+    disqualified: false
+QEH:
+    score: 18.0
+    present: true
+    disqualified: false
 #with exit code 1
 ```
