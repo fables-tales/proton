@@ -60,7 +60,7 @@ Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
         program implements.
 
     1.1 The scores key MUST be a dictionary with keys matching the top level
-        keys in the input. The value under each key should be a dictionary with:
+        keys in the input. The value under each key MUST be a dictionary with:
 
         * A key "score" with a numeric value, representing the team's score
           (game points).
