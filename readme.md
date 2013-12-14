@@ -22,6 +22,8 @@ interface with other services.
 
 ##Inputs
 
+Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
+
 1. A proton compliant program MUST consume a single argument which is the
    path to a YAML file containing a computerised interpretation of a Student
    Robotics scoresheet.
