@@ -13,6 +13,13 @@ interface with other services.
 
 3. A proton compliant program MUST run on both OSX and Linux.
 
+4. A proton compliant program MUST NOT have any side effects beyond printing
+   to STDERR, STDOUT and having a return code. This precludes:
+   modifying its input, writing to a database or any other kind of I/O.
+
+5. A proton compliant program MUST be idempodent. That is: it must always
+   give the same output for a given input.
+
 ##Inputs
 
 1. A proton compliant program MUST consume a single argument which is the
