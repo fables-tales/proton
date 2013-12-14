@@ -8,8 +8,8 @@ interface with other services.
 1. A proton compliant program MUST be either a script including a `#!` line
    or be a binary.
 
-2. A proton compliant program MUST can be exec'd on a supported platform.
-   This typically means that it has the executable bit set.
+2. A proton compliant program MUST be capable of being exec'd on a supported
+   platform. This typically means that it has the executable bit set.
 
 3. A proton compliant program MUST run on both OSX and Linux.
 
