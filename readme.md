@@ -21,16 +21,13 @@ interface with other services.
         YAML file. Each key corresponds to a TLA of a team that participated in the
         match. A YAML file without 4 top level TLAs is malformed.
 
-    1.2 A proton compliant program MUST NOT score any team who's TLA entry in
-        the file has the key value pair `present:false`.
-        A `present` key with a non-boolean value is malformed.
+    1.2 A proton compliant program MUST accept the keys "disqualified" and
+        "present" under each TLA. "disqualified" is assumed to default to false.
+        "present" is assumed to default to true. Either key taking a non
+        boolean value gives a malformed input.
 
-    1.3 A proton compliant program MUST NOT score any team who's TLA entry in
-        the file has the key value pair `disqualified:true`.
-        A `disqualified` key with a non-boolean value is malformed.
-
-    1.4 A proton compliant program MUST exit with 1 if the input is malformed
-        YAML or does not comply with either rules 1.1, 1.2 or 1.3
+    1.3 A proton compliant program MUST exit with 1 if the input is malformed
+        YAML or does not comply with either rules 1.1 or 1.2.
 
 2. A proton compliant program MUST NOT block on any input from stdin.
 
@@ -41,9 +38,11 @@ interface with other services.
 
     1.1 The YAML output MUST contain exactly top level keys as the provided
         input file with one of:
-        * A numeric value of the team was present
-        * The string "DNS" if the team was not present in the match.
-        * The string "DSQ" if the team was disqualified from the match.
+
+        * A key "score" with a numeric value, representing the team's score.
+        * A key "present" with the value from the present key in the input.
+        * A key "disqualified" with the value from the disqualified key in the
+          input.
 
 2. A proton compliant program MUST exit with 0 if it succeeds.
 
@@ -112,7 +111,9 @@ QEH:
 ###Valid responses
 
 ```
-CLF: 41.0
+CLF:
+    score: 41.0
+    present: true
 PSC: 12.0
 BGR: 7.0
 QEH: 18.0
