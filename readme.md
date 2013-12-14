@@ -25,8 +25,12 @@ interface with other services.
         the file has the key value pair `present:false`.
         A `present` key with a non-boolean value is malformed.
 
-    1.3 A proton compliant program MUST exit with 1 if the input is malformed
-        YAML or does not comply with either rules 1.1 or 1.2
+    1.3 A proton compliant program MUST NOT score any team who's TLA entry in
+        the file has the key value pair `disqualified:true`.
+        A `disqualified` key with a non-boolean value is malformed.
+
+    1.4 A proton compliant program MUST exit with 1 if the input is malformed
+        YAML or does not comply with either rules 1.1, 1.2 or 1.3
 
 2. A proton compliant program MUST NOT block on any input from stdin.
 
@@ -36,7 +40,10 @@ interface with other services.
    succeeds.
 
     1.1 The YAML output MUST contain exactly top level keys as the provided
-        input file, with numeric representations of the scores of each team
+        input file with one of:
+        * A numeric value of the team was present
+        * The string "DNS" if the team was not present in the match.
+        * The string "DSQ" if the team was disqualified from the match.
 
 2. A proton compliant program MUST exit with 0 if it succeeds.
 
