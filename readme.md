@@ -1,7 +1,6 @@
 #Proton (1.0.0-rc1 [SemVer](http://semver.org/))
 
-Proton is a protocol for Student Robotics match scoring scripts to
-interface with other services.
+Proton is a protocol for Student Robotics match scoring scripts.
 
 ##Execution
 
@@ -17,8 +16,8 @@ interface with other services.
    to STDERR, STDOUT and having a return code. This precludes:
    modifying its input, writing to a database or any other kind of I/O.
 
-5. A proton compliant program MUST be referentially transparent. That is: it
-   must always give the same output for a given input.
+5. A proton compliant program MUST always give the same output for a given
+   input.
 
 ##Inputs
 
