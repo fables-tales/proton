@@ -153,18 +153,22 @@ scores:
         score: 41.0
         present: true
         disqualified: false
+        corner: 0
     PSC:
         score: 12.0
         present: true
         disqualified: false
+        corner: 1
     BGR:
         score: 7.0
         present: true
         disqualified: false
+        corner: 2
     QEH:
         score: 18.0
         present: true
         disqualified: false
+        corner: 3
 
 #with exit code 0
 ```
