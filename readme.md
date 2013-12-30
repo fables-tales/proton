@@ -38,7 +38,7 @@ Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
     match_number: integer
     teams: dictionary with 2-4 key value pairs:
         TLA: dictionary with key value pairs:
-            corner: an integer between 0 and 3 inclusive
+            zone: an integer between 0 and 3 inclusive
             disqualified: an optional boolean, defaulting to false
             present: an optional boolean, defaulting to true
 
@@ -73,7 +73,7 @@ scores: dictionary with exactly as many keys there were teams in the input
         score: numeric value, representing team's score (game points).
         present: boolean, value from the input
         disqualified: boolean, value from the input
-        corner: integer, the corner the team was in
+        zone: integer, the zone the team was in
 ```
 
 2. A proton compliant program MUST exit with 0 if it succeeds.
@@ -153,22 +153,22 @@ scores:
         score: 41.0
         present: true
         disqualified: false
-        corner: 0
+        zone: 0
     PSC:
         score: 12.0
         present: true
         disqualified: false
-        corner: 1
+        zone: 1
     BGR:
         score: 7.0
         present: true
         disqualified: false
-        corner: 2
+        zone: 2
     QEH:
         score: 18.0
         present: true
         disqualified: false
-        corner: 3
+        zone: 3
 
 #with exit code 0
 ```
