@@ -1,4 +1,4 @@
-#Proton (1.0.0-rc1 [SemVer](http://semver.org/))
+#Proton (1.0.0-rc2 [SemVer](http://semver.org/))
 
 Proton is a protocol for Student Robotics match scoring scripts.
 
@@ -36,6 +36,7 @@ Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
 ```
 
     match_number: integer
+    arena_id: integer or string representing arena identity
     teams: dictionary with 2-4 key value pairs:
         TLA: dictionary with key value pairs:
             zone: an integer between 0 and 3 inclusive
@@ -68,6 +69,7 @@ Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
 ```
 version: string representing version of the proton protocol implemented i.e. (1.0.0)
 match_number: an integer representing the match number
+arena_id: integer or string representing arena identity
 scores: dictionary with exactly as many keys there were teams in the input
     TLA: dictionary with exactly the key value pairs
         score: numeric value, representing team's score (game points).
@@ -90,6 +92,7 @@ scores: dictionary with exactly as many keys there were teams in the input
 
 ```yaml
 match_number: 3
+arena_id: A
 teams:
     CLF:
      squares : [[1,2,1],[1,0,1],[0,0,0]]
@@ -103,6 +106,7 @@ teams:
 
 ```yaml
 match_number: 4
+arena_id: B
 teams:
     CLF:
      present : false
@@ -117,6 +121,7 @@ teams:
 
 ```yaml
 match_number: 3
+arena_id: A
 teams:
     1:
      present : false
@@ -131,6 +136,7 @@ teams:
 
 ```yaml
 match_number: 3
+arena_id: B
 teams:
     CLF:
      present : 1.0
@@ -148,6 +154,7 @@ teams:
 ```
 version: 1.0.0
 match_number: 3
+arena_id: A
 scores:
     CLF:
         score: 41.0
@@ -213,7 +220,7 @@ scores:
 #with exit code 0
 ```
 
-Missing match number
+Missing match number and arena ID
 ```
 version: 1.0.0
 scores:
