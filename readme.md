@@ -157,7 +157,7 @@ teams:
 ###Valid responses
 
 ```
-- version: 1.0.0
+- version: 2.0.0
   match_number: 3
   arena_id: A
   scores:
@@ -197,7 +197,7 @@ teams:
 
 No match number
 ```
-- version: 1.0.0
+- version: 2.0.0
   scores:
       CLF:
           score: 41.0
@@ -220,14 +220,14 @@ No match number
 
 Many missing values
 ```
-- version: 1.0.0
+- version: 2.0.0
   scores:
 #with exit code 0
 ```
 
 Missing match number and arena ID
 ```
-- version: 1.0.0
+- version: 2.0.0
   scores:
       CLF:
           score: 41.0
@@ -250,7 +250,7 @@ Missing match number and arena ID
 
 A dictionary at root level, not a list
 ```
-version: 1.0.0
+version: 2.0.0
 match_number: 3
 arena_id: A
 scores:
