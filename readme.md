@@ -1,4 +1,4 @@
-#Proton (1.0.0-rc2 [SemVer](http://semver.org/))
+#Proton (2.0.0-rc1 [SemVer](http://semver.org/))
 
 Proton is a protocol for Student Robotics match scoring scripts.
 
@@ -23,11 +23,11 @@ Proton is a protocol for Student Robotics match scoring scripts.
 
 Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
 
-1. A proton compliant program MUST consume a single argument which is the
-   path to a YAML file containing a computerised interpretation of a Student
-   Robotics scoresheet.
+1. A proton compliant program MUST consume one or more arguments which are the
+   paths to YAML files containing computerised interpretations of Student
+   Robotics scoresheets.
 
-    1.0 A proton compliant program MUST be able to read a file from both
+    1.0 A proton compliant program MUST be able to files from both
         absolute and relative paths.
 
     1.1 A proton compliant program MUST accept YAML files with the proton
@@ -52,7 +52,7 @@ Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
         YAML or does not comply with rule 1.1
 
 2. A proton compliant program MUST consume YAML from stdin if it is not
-   given a filename.
+   given any filenames.
 
 3. A proton compliant program MAY refuse to process an input if it detects
    nested scoring values it is unable to process. If this occurs it MUST
@@ -60,30 +60,35 @@ Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
 
 ##Outputs
 
-1. A proton compliant program MUST print a YAML dictionary to STDOUT if it
+1. A proton compliant program MUST print a YAML list to STDOUT if it
    succeeds.
 
+2. Each element of the list must be a YAML dictionary.
 
-    1.1 The output must be of the form:
+    2.1 The dictionaries must be of the form:
 
-```
-version: string representing version of the proton protocol implemented i.e. (1.0.0)
-match_number: an integer representing the match number
-arena_id: integer or string representing arena identity
-scores: dictionary with exactly as many keys there were teams in the input
-    TLA: dictionary with exactly the key value pairs
-        score: numeric value, representing team's score (game points).
-        present: boolean, value from the input
-        disqualified: boolean, value from the input
-        zone: integer, the zone the team was in
-```
+  ```
+  version: string representing version of the proton protocol implemented i.e. (1.0.0)
+  match_number: an integer representing the match number
+  arena_id: integer or string representing arena identity
+  scores: dictionary with exactly as many keys there were teams in the input
+      TLA: dictionary with exactly the key value pairs
+          score: numeric value, representing team's score (game points).
+          present: boolean, value from the input
+          disqualified: boolean, value from the input
+          zone: integer, the zone the team was in
+  ```
 
-2. A proton compliant program MUST exit with 0 if it succeeds.
+3. A proton compliant program must contain the exact number of outputs in the
+   output list as it was given inputs, or one output in the list if the input
+   was accepted from STDIN.
 
-3. A proton compliant program's output to STDOUT MUST be considered unusable if
+4. A proton compliant program MUST exit with 0 if it succeeds.
+
+5. A proton compliant program's output to STDOUT MUST be considered unusable if
    it fails.
 
-4. A proton compliant program MAY print to STDERR under any circumstances.
+6. A proton compliant program MAY print to STDERR under any circumstances.
 
 
 ##Examples
@@ -152,14 +157,14 @@ teams:
 ###Valid responses
 
 ```
-version: 1.0.0
-match_number: 3
-arena_id: A
-scores:
+- version: 2.0.0
+  match_number: 3
+  arena_id: A
+  scores:
     CLF:
-        score: 41.0
-        present: true
-        disqualified: false
+      score: 41.0
+      present: true
+      disqualified: false
         zone: 0
     PSC:
         score: 12.0
@@ -192,53 +197,83 @@ scores:
 
 No match number
 ```
-version: 1.0.0
-scores:
-    CLF:
-        score: 41.0
-        present: true
-        disqualified: false
-    PSC:
-        score: 12.0
-        present: true
-        disqualified: false
-    QEH:
-        score: 18.0
-        present: true
-        disqualified: false
-    BGR:
-        score: 7.0
-        present: true
-        disqualified: false
+- version: 2.0.0
+  scores:
+      CLF:
+          score: 41.0
+          present: true
+          disqualified: false
+      PSC:
+          score: 12.0
+          present: true
+          disqualified: false
+      QEH:
+          score: 18.0
+          present: true
+          disqualified: false
+      BGR:
+          score: 7.0
+          present: true
+          disqualified: false
 #with exit code 0
 ```
 
 Many missing values
 ```
-version: 1.0.0
-scores:
+- version: 2.0.0
+  scores:
 #with exit code 0
 ```
 
 Missing match number and arena ID
 ```
-version: 1.0.0
-scores:
-    CLF:
-        score: 41.0
-        present: true
-        disqualified: false
-    PSC:
-        score: 12.0
-        present: true
-        disqualified: false
-    BGR:
-        score: 7.0
-        present: true
-        disqualified: false
-    QEH:
-        score: 18.0
-        present: true
-        disqualified: false
+- version: 2.0.0
+  scores:
+      CLF:
+          score: 41.0
+          present: true
+          disqualified: false
+      PSC:
+          score: 12.0
+          present: true
+          disqualified: false
+      BGR:
+          score: 7.0
+          present: true
+          disqualified: false
+      QEH:
+          score: 18.0
+          present: true
+          disqualified: false
 #with exit code 1
+```
+
+A dictionary at root level, not a list
+```
+version: 2.0.0
+match_number: 3
+arena_id: A
+scores:
+  CLF:
+    score: 41.0
+    present: true
+    disqualified: false
+      zone: 0
+  PSC:
+      score: 12.0
+      present: true
+      disqualified: false
+      zone: 1
+  BGR:
+      score: 7.0
+      present: true
+      disqualified: false
+      zone: 2
+  QEH:
+      score: 18.0
+      present: true
+      disqualified: false
+      zone: 3
+
+#with exit code 0
 ```
