@@ -1,4 +1,4 @@
-#Proton (1.0.1 [SemVer](http://semver.org/))
+#Proton (1.0.2 [SemVer](http://semver.org/))
 
 Proton is a protocol for Student Robotics match scoring scripts.
 
@@ -64,17 +64,17 @@ Note: A TLA is defined as a string matching the regex `[a-zA-Z]{3}[a-zA-Z0-9]*`.
 
     1.1 The output must be of the form:
 
-```
-version: string representing version of the proton protocol implemented i.e. (1.0.0)
-match_number: an integer representing the match number
-arena_id: integer or string representing arena identity
-scores: dictionary with exactly as many keys there were teams in the input
-    TLA: dictionary with exactly the key value pairs
-        score: numeric value, representing team's score (game points).
-        present: boolean, value from the input
-        disqualified: boolean, value from the input
-        zone: integer, the zone the team was in
-```
+    ~~~yaml
+    version: string representing version of the proton protocol implemented e.g: "1.0.0"
+    match_number: an integer representing the match number
+    arena_id: integer or string representing arena identity
+    scores: dictionary with exactly as many keys there were teams in the input
+        TLA: dictionary with exactly the key value pairs
+            score: numeric value, representing team's score (game points).
+            present: boolean, value from the input
+            disqualified: boolean, value from the input
+            zone: integer, the zone the team was in
+    ~~~
 
 2. A proton compliant program MUST exit with 0 if it succeeds.
 
